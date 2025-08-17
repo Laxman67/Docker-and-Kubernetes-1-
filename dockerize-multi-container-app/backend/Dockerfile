@@ -1,4 +1,4 @@
-FROM node
+FROM node:alpine
 
 WORKDIR /app
 
@@ -10,4 +10,6 @@ COPY . /app
 
 EXPOSE 80
 
-CMD [ "node", "app.js" ]
+ENV MONGODB_CONTAINER_NAME=mongodb
+
+CMD [ "npm", "start" ]

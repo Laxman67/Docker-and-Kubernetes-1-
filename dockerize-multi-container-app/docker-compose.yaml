@@ -1,0 +1,35 @@
+# version: "3.8"
+name: goals-app
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db  
+  backend:
+    # image: "goals-node"
+    build: ./backend
+    ports:
+      - '80:80'
+    volumes:
+      - /app/logs
+      - /app/
+    environment:
+      - MONGODB_CONTAINER_NAME=goals-app-mongodb-1
+    depends_on:
+      - mongodb
+  frontend:
+    image: "goals-react"
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+    stdin_open: true
+    tty: true
+    
+
+volumes:
+  data:
+
+

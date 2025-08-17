@@ -1,11 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
-
-const goalSchema = new Schema({
-  text: String
+const goalSchema = new mongoose.Schema({
+  text: String,
 });
 
-const GoalModel = mongoose.model('Goal', goalSchema);
+const Goal = mongoose.model("Goal", goalSchema);
 
-module.exports = GoalModel;
+export default Goal;
